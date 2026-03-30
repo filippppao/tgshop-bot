@@ -1,0 +1,51 @@
+# Виртуальное окружение
+venv/
+env/
+.env/
+.venv/
+
+# Файлы Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+
+# База данных (важно!)
+*.db
+*.sqlite
+*.sqlite3
+
+# Логи
+*.log
+bot.log
+
+# Папка с фото
+product_photos/
+*.jpg
+*.png
+*.jpeg
+
+# Файлы с секретами
+credentials.json
+.env
+config_local.py
+secrets.py
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Файлы с токенами (особенно важно!)
+# Никогда не публикуйте файлы с токенами!
+*.env
+*.key
+*.pem
