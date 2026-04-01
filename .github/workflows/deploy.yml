@@ -1,0 +1,27 @@
+name: Deploy Bot
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy_bot:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create data directory
+        run: mkdir -p ./telegram-shop-bot-master/telegram-shop-bot-master/data
+
+      - name: Create .env file from GitHub Secrets
+        run: |
+          echo "${{ secrets.PROD_ENV }}" > ./telegram-shop-bot-master/telegram-shop-bot-master/.env.prod.docker
+
+      - name: Build and deploy containers
+        run: |
+          docker compose build --pull
+          docker compose down --remove-orphans
+          docker compose up -d

@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tgshop_bot
+    restart: always
+    env_file:
+      - ./telegram-shop-bot-master/telegram-shop-bot-master/.env.prod.docker
+    environment:
+      # Путь до БД внутри контейнера, будет сохраняться на хосте
+      - DB_PATH=/app/data/shop.db
+      - PHOTOS_DIR=/app/data/product_photos
+    volumes:
+      # Мапим volume для базы данных, чтобы она не удалялась при деплое
+      - bot_data:/app/data
+
+volumes:
+  bot_data:
