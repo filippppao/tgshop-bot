@@ -14,6 +14,7 @@ from telegram.ext import (
     ConversationHandler,
     filters
 )
+import os
 
 # Конфигурация
 from config import BOT_TOKEN
@@ -74,7 +75,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Инициализация БД
-db = Database()
+db_path = os.getenv("DB_PATH", "shop.db")
+db = Database(db_name=db_path)
 
 async def error_handler(update, context):
     """Глобальный обработчик ошибок"""
