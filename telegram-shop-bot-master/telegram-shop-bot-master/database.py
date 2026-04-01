@@ -7,6 +7,7 @@ import time
 from datetime import datetime
 from functools import lru_cache
 from config import SUPER_ADMIN_IDS
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -23,10 +24,10 @@ class Database:
                 cls._instance._initialized = False
             return cls._instance
     
-    def __init__(self, db_name='shop.db'):
+    def __init__(self, db_name=None):
         if self._initialized:
             return
-        self.db_name = db_name
+        self.db_name = os.getenv("DB_PATH", db_name or 'shop.db')
         self.init_db()
         self.update_structure()
         self._cache = {}
