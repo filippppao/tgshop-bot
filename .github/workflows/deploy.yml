@@ -13,15 +13,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create data directory
-        run: mkdir -p ./telegram-shop-bot-master/telegram-shop-bot-master/data
-
       - name: Create .env file from GitHub Secrets
         run: |
+          # Файл .env.prod.docker создается заново на каждый деплой,
+          # но база данных в это время находится в постоянном Docker Volume
           echo "${{ secrets.PROD_ENV }}" > ./telegram-shop-bot-master/telegram-shop-bot-master/.env.prod.docker
 
       - name: Build and deploy containers
         run: |
+          # ВАЖНО: Мы не используем -v в docker compose down, поэтому база данных сохраняется
           docker compose build --pull
           docker compose down --remove-orphans
           docker compose up -d

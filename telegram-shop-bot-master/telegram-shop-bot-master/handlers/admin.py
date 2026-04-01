@@ -18,8 +18,6 @@ logger = logging.getLogger(__name__)
 db = Database()
 gs = GoogleSheets() if SPREADSHEET_ID else None
 
-# ========== ОСНОВНОЙ ОБРАБОТЧИК ==========
-
 async def admin_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Обработчик для менеджеров"""
     text = update.message.text

@@ -10,12 +10,15 @@ services:
     env_file:
       - ./telegram-shop-bot-master/telegram-shop-bot-master/.env.prod.docker
     environment:
-      # Путь до БД внутри контейнера, будет сохраняться на хосте
+      # ВАЖНО: Эти пути теперь внутри контейнера указывают на постоянный Volume
       - DB_PATH=/app/data/shop.db
       - PHOTOS_DIR=/app/data/product_photos
     volumes:
-      # Мапим volume для базы данных, чтобы она не удалялась при деплое
+      # Мапим ВНЕШНИЙ ИМЕНОВАННЫЙ volume, который НЕ УДАЛЯЕТСЯ при обновлении кода
       - bot_data:/app/data
 
 volumes:
   bot_data:
+    # Задаем фиксированное имя, чтобы Docker не добавлял префикс имени папки.
+    # Это гарантирует, что база останется той же даже при смене папки деплоя.
+    name: tgshop_bot_persistent_data

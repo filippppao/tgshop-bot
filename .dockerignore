@@ -1,0 +1,8 @@
+telegram-shop-bot-master/telegram-shop-bot-master/*.db
+telegram-shop-bot-master/telegram-shop-bot-master/bot.log
+telegram-shop-bot-master/telegram-shop-bot-master/product_photos/
+telegram-shop-bot-master/telegram-shop-bot-master/__pycache__/
+telegram-shop-bot-master/telegram-shop-bot-master/venv/
+.env*
+.git/
+.github/
