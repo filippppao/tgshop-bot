@@ -19,6 +19,10 @@ jobs:
           # но база данных в это время находится в постоянном Docker Volume
           echo "${{ secrets.PROD_ENV }}" > ./telegram-shop-bot-master/telegram-shop-bot-master/.env.prod.docker
 
+      - name: Create credentials.json from GitHub Secrets
+        run: |
+          echo '${{ secrets.GOOGLE_CREDENTIALS }}' > ./telegram-shop-bot-master/telegram-shop-bot-master/credentials.json
+
       - name: Build and deploy containers
         run: |
           # ВАЖНО: Мы не используем -v в docker compose down, поэтому база данных сохраняется
