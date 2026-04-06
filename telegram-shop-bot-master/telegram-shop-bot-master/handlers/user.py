@@ -197,7 +197,9 @@ async def show_help(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "• Когда друг сделает первый заказ - вы получите бонус\n"
         "• Размер бонуса уточняйте у менеджера\n\n"
         
-        f"СВЯЗЬ С МЕНЕДЖЕРОМ: {manager_contact}\n\n @filimillance"
+        f"СВЯЗЬ С МЕНЕДЖЕРОМ: {manager_contact}\n\n"
+
+        "@helper_pods\n"
         
         "ЕСЛИ ВОЗНИКЛИ ПРОБЛЕМЫ:\n"
         "• Проверьте правильность введенных данных\n"
