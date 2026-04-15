@@ -18,8 +18,7 @@ jobs:
 
       - name: Create .env file from GitHub Secrets
         run: |
-          # Файл .env.prod.docker создается заново на каждый деплой,
-          # но база данных в это время находится в постоянном Docker Volume
+          mkdir -p ./telegram-shop-bot-master/telegram-shop-bot-master
           echo "${{ secrets.PROD_ENV }}" > ./telegram-shop-bot-master/telegram-shop-bot-master/.env.prod.docker
 
       - name: Create credentials.json from GitHub Secrets
@@ -28,7 +27,6 @@ jobs:
 
       - name: Build and deploy containers
         run: |
-          # ВАЖНО: Мы не используем -v в docker compose down, поэтому база данных сохраняется
-          docker compose build --pull
+          docker compose build
           docker compose down --remove-orphans
           docker compose up -d
