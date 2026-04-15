@@ -1,17 +1,20 @@
-name: Deploy Bot
+name: Deploy to Server
 
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:
+    branches: [ main, master ]
 
 jobs:
-  deploy_bot:
+  deploy:
     runs-on: self-hosted
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
       - name: Create .env file from GitHub Secrets
         run: |
