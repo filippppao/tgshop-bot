@@ -10,7 +10,7 @@ services:
     env_file:
       - ./telegram-shop-bot-master/telegram-shop-bot-master/.env.prod.docker
     environment:
-      # ВАЖНО: Эти пути теперь внутри контейнера указывают на постоянный Volume
+      # ВАЖНО: Эти пути теперь внутри контейнера указывают на постоянный Volume1
       - DB_PATH=/app/data/shop.db
       - PHOTOS_DIR=/app/data/product_photos
     volumes:
